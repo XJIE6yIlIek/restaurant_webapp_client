@@ -38,7 +38,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" fillWidth="false" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.restaurantapp.webapp.controllers.LoginController">
+<VBox alignment="CENTER" fillWidth="false" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.restaurantapp.webapp.controllers.MainPageControllers.LoginController">
   <children>
       <TextField fx:id="usernameField" prefHeight="0.0" prefWidth="149.0" promptText="Username">
          <VBox.margin>

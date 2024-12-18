@@ -21,16 +21,16 @@ public class HttpUtils {
         return CLIENT.send(request, HttpResponse.BodyHandlers.ofString()).body();
     }
 
-    public static String sendGetRequest(URI uri) throws IOException, InterruptedException {
+    public static String sendGetRequest(String uri) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(uri)
+                .uri(URI.create(uri))
                 .build();
         return CLIENT.send(request, HttpResponse.BodyHandlers.ofString()).body();
     }
 
-    public static String sendDeleteRequest(URI uri) throws IOException, InterruptedException {
+    public static String sendDeleteRequest(String uri) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(uri)
+                .uri(URI.create(uri))
                 .DELETE()
                 .build();
         return CLIENT.send(request, HttpResponse.BodyHandlers.ofString()).body();

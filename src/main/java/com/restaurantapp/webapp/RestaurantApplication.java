@@ -1,5 +1,6 @@
 package com.restaurantapp.webapp;
 
+import com.restaurantapp.webapp.services.APIService;
 import com.restaurantapp.webapp.utils.AlertUtils;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,9 +11,9 @@ import java.io.IOException;
 
 public class RestaurantApplication extends Application {
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws IOException, InterruptedException {
         try {
-            Scene scene = new Scene(FXMLLoader.load(RestaurantApplication.class.getResource("login_test.fxml")));
+            Scene scene = new Scene(FXMLLoader.load(RestaurantApplication.class.getResource("login.fxml")));
             stage.setTitle("Login");
             stage.setScene(scene);
             stage.show();
