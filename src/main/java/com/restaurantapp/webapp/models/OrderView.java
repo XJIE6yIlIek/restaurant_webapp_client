@@ -13,12 +13,14 @@ import java.util.Objects;
 @NoArgsConstructor
 public class OrderView {
 
+    private Long id;
     private String tableNumber;
     private String status;
     private LocalDateTime orderTime;
     private List<String> items;
 
-    public OrderView(String tableNumber, OrderStatus status, LocalDateTime orderTime, List<OrderItem> items) {
+    public OrderView(Long id, String tableNumber, OrderStatus status, LocalDateTime orderTime, List<OrderItem> items) {
+        this.id = id;
         this.tableNumber = tableNumber;
         this.status = status.getName();
         this.orderTime = orderTime;

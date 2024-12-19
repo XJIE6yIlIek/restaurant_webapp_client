@@ -4,6 +4,7 @@ import com.restaurantapp.webapp.RestaurantApplication;
 import com.restaurantapp.webapp.controllers.MenuControllers.MenuController;
 import com.restaurantapp.webapp.controllers.MenuControllers.MenuManagementController;
 import com.restaurantapp.webapp.controllers.OrderControllers.OrderController;
+import com.restaurantapp.webapp.controllers.UserControllers.UserController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -59,6 +60,21 @@ public class StageManager {
             FXMLLoader loader = new FXMLLoader(RestaurantApplication.class.getResource(fxmlFile));
             Scene scene = new Scene(loader.load());
             OrderController controller = loader.getController();
+            controller.loadData();
+            stage.setScene(scene);
+            stage.setTitle(sceneTitle);
+            stage.show();
+        } catch (Exception e) {
+            AlertUtils.showErrorMessage("Failed to switch scene.");
+            e.printStackTrace();
+        }
+    }
+
+    public static void switchWindowToUsers(Stage stage, String fxmlFile, String sceneTitle) {
+        try {
+            FXMLLoader loader = new FXMLLoader(RestaurantApplication.class.getResource(fxmlFile));
+            Scene scene = new Scene(loader.load());
+            UserController controller = loader.getController();
             controller.loadData();
             stage.setScene(scene);
             stage.setTitle(sceneTitle);

@@ -15,7 +15,7 @@ public class AdminController {
     @FXML
     private void handleTableOpen() {
         tableButton.setDisable(true);
-//        StageManager.switchWindowToUsers((Stage) tableButton.getScene().getWindow(), "user_table.fxml", "Users"); TODO: add user_table.fxml
+        StageManager.switchWindowToUsers((Stage) tableButton.getScene().getWindow(), "user_table.fxml", "Users");
         tableButton.setDisable(false);
     }
 

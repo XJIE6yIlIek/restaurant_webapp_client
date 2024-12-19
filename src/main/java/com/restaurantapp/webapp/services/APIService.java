@@ -4,10 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.restaurantapp.webapp.models.Dish;
-import com.restaurantapp.webapp.models.LoginRequestPayload;
-import com.restaurantapp.webapp.models.Order;
-import com.restaurantapp.webapp.models.OrderView;
+import com.restaurantapp.webapp.models.*;
 import com.restaurantapp.webapp.utils.HttpUtils;
 
 import java.io.IOException;
@@ -39,9 +36,29 @@ public class APIService {
         String url = api_url + "/orders";
         String response = HttpUtils.sendGetRequest(url);
         List<Order> orders = objectMapper.readValue(response, new TypeReference<>(){});
-        List<OrderView> orderViews = orders.stream().map(order -> new OrderView(order.getTableNumber(),
+        List<OrderView> orderViews = orders.stream().map(order -> new OrderView(order.getId(), order.getTableNumber(),
                 order.getStatus(), order.getOrderTime(), order.getItems())).toList();
         return orderViews;
+    }
+
+    public static List<UserView> loadUsers() throws IOException, InterruptedException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
+        String url = api_url + "/users";
+        String response = HttpUtils.sendGetRequest(url);
+        List<User> users = objectMapper.readValue(response, new TypeReference<>(){});
+        List<UserView> userViews = users.stream().map(user -> new UserView(user.getId(), user.getUsername(),
+                user.getRole().getName())).toList();
+        return userViews;
+    }
+
+    public static List<UserRole> loadUserRoles() throws IOException, InterruptedException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
+        String url = api_url + "/users/roles";
+        String response = HttpUtils.sendGetRequest(url);
+        List<UserRole> userRoles = objectMapper.readValue(response, new TypeReference<>(){});
+        return userRoles;
     }
 
     public static void createDish(Dish dish) throws IOException, InterruptedException {
@@ -61,6 +78,34 @@ public class APIService {
     public static void deleteRow(Long id, String table) throws IOException, InterruptedException {
         String url = api_url + "/" + table + "/delete/" + id;
         String response = HttpUtils.sendDeleteRequest(url);
+        System.out.println(response);
+    }
+
+    public static void updateOrderStatus(Order order) throws IOException, InterruptedException {
+        ObjectWriter objectWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String url = api_url + "/orders/update/" + order.getId();
+        String response = HttpUtils.sendPostRequest(url, objectWriter.writeValueAsString(order));
+        System.out.println(response);
+    }
+
+    public static void createOrder(Order order) throws IOException, InterruptedException {
+        ObjectWriter objectWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String url = api_url + "/orders/create";
+        String response = HttpUtils.sendPostRequest(url, objectWriter.writeValueAsString(order));
+        System.out.println(response);
+    }
+
+    public static void updateUser(User user) throws IOException, InterruptedException {
+        ObjectWriter objectWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String url = api_url + "/users/update/" + user.getId();
+        String response = HttpUtils.sendPostRequest(url, objectWriter.writeValueAsString(user));
+        System.out.println(response);
+    }
+
+    public static void createUser(User user) throws IOException, InterruptedException {
+        ObjectWriter objectWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String url = api_url + "/users/create";
+        String response = HttpUtils.sendPostRequest(url, objectWriter.writeValueAsString(user));
         System.out.println(response);
     }
 

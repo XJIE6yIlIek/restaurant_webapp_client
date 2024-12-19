@@ -14,7 +14,6 @@ import java.util.List;
 @NoArgsConstructor
 public class Order {
 
-    @JsonIgnore
     private Long id;
     private String tableNumber;
     private OrderStatus status;

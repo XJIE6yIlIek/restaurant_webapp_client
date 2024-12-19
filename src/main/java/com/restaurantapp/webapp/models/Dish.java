@@ -17,4 +17,11 @@ public class Dish {
     private Float weight;
     private Float price;
 
+    public Dish(String name, String description, Float weight, Float price) {
+        this.name = name;
+        this.description = description;
+        this.weight = weight;
+        this.price = price;
+    }
+
 }
