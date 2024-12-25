@@ -109,7 +109,6 @@ public class UserController {
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         roleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
 
-        idColumn.setCellFactory(TextFieldTableCell.forTableColumn(new LongStringConverter()));
         usernameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         roleColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 

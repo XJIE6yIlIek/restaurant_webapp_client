@@ -8,22 +8,23 @@ import javafx.stage.Stage;
 public class ManagerController {
 
     @FXML
-    private Button tableButton;
+    private Button dishMenuButton, eventMenuButton;
     @FXML
     private Button logoutButton;
 
     @FXML
-    private void handleTableOpen() {
-        tableButton.setDisable(true);
-        StageManager.switchWindowToMenuManagement((Stage) tableButton.getScene().getWindow(), "dish_table_management.fxml", "Menu management");
-        tableButton.setDisable(false);
+    private void handleDishMenuOpen() {
+        StageManager.switchWindowToMenuManagement((Stage) dishMenuButton.getScene().getWindow(), "dish_table_management.fxml", "Menu management");
+    }
+
+    @FXML
+    private void handleEventMenuOpen() {
+        StageManager.switchWindowToEventManagementMenu((Stage) eventMenuButton.getScene().getWindow(), "event_table_management.fxml", "Events management");
     }
 
     @FXML
     private void handleLogout() {
-        logoutButton.setDisable(true);
         StageManager.switchWindow((Stage) logoutButton.getScene().getWindow(), "login.fxml", "Login");
-        logoutButton.setDisable(false);
     }
 
 }

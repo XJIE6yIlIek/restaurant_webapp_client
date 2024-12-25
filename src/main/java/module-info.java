@@ -23,4 +23,6 @@ module com.restaurantapp.webapp {
     opens com.restaurantapp.webapp.controllers.MainPageControllers to javafx.fxml;
     exports com.restaurantapp.webapp.controllers.UserControllers;
     opens com.restaurantapp.webapp.controllers.UserControllers to javafx.fxml;
+    exports com.restaurantapp.webapp.controllers.EventControllers;
+    opens com.restaurantapp.webapp.controllers.EventControllers to javafx.fxml;
 }

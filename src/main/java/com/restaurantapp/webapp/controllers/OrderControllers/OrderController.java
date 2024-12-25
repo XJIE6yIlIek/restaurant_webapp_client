@@ -49,7 +49,7 @@ public class OrderController {
         newOrderStatus.setName(event.getNewValue());
         order.setStatus(newOrderStatus);
         APIService.updateOrderStatus(order);
-    }
+    } // TODO: do something if order status doesn't exist
 
     @FXML
     private void handleAddRow() throws IOException {

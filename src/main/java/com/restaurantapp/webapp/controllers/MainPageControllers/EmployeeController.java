@@ -14,16 +14,12 @@ public class EmployeeController {
 
     @FXML
     private void handleTableOpen() {
-        tableButton.setDisable(true);
         StageManager.switchWindowToOrders((Stage) tableButton.getScene().getWindow(), "order_table.fxml", "Orders");
-        tableButton.setDisable(false);
     }
 
     @FXML
     private void handleLogout() {
-        logoutButton.setDisable(true);
         StageManager.switchWindow((Stage) logoutButton.getScene().getWindow(), "login.fxml", "Login");
-        logoutButton.setDisable(false);
     }
 
 }

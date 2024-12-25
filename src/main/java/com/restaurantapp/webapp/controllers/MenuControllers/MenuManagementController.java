@@ -139,7 +139,6 @@ public class MenuManagementController {
         weightColumn.setCellValueFactory(new PropertyValueFactory<>("weight"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
 
-        idColumn.setCellFactory(TextFieldTableCell.forTableColumn(new LongStringConverter()));
         nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         descriptionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         weightColumn.setCellFactory(TextFieldTableCell.forTableColumn(new CustomObjectConverter.CustomFloatStringConverter()));

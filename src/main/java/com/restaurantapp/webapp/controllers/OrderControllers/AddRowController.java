@@ -27,7 +27,7 @@ public class AddRowController {
     @FXML
     private TableView<OrderItem> tableView;
     @FXML
-    private TableColumn<OrderItem, Long> idColumn, quantityColumn;
+    private TableColumn<OrderItem, Long> idColumn, nameColumn, quantityColumn;
     @FXML
     private ComboBox<Dish> dishComboBox;
     @FXML
@@ -55,9 +55,9 @@ public class AddRowController {
         }
 
         idColumn.setCellValueFactory(new PropertyValueFactory<>("dishId"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("dishName"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
-        idColumn.setCellFactory(TextFieldTableCell.forTableColumn(new CustomObjectConverter.CustomLongStringConverter()));
         quantityColumn.setCellFactory(TextFieldTableCell.forTableColumn(new CustomObjectConverter.CustomLongStringConverter()));
     }
 
@@ -93,8 +93,8 @@ public class AddRowController {
         if (!Objects.isNull(dish)) {
             OrderItem orderItem = new OrderItem();
             orderItem.setDishId(dish.getId());
+            orderItem.setDishName(dish.getName());
             orderItem.setQuantity(1L);
-            System.out.println(dish.getId());
             data.add(orderItem);
             tableView.refresh();
         } else {

@@ -13,6 +13,7 @@ public class OrderItem {
 
     private Long id;
     private Long dishId;
+    private String dishName;
     private Long quantity;
 
 }

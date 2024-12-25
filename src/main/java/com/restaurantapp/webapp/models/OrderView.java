@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @Setter @Getter
@@ -25,7 +26,7 @@ public class OrderView {
         this.status = status.getName();
         this.orderTime = orderTime;
         this.items = items.stream().map(item -> item
-                .getQuantity() + " " + item.getDishId()).toList();
+                .getDishName() + " " + item.getQuantity()).toList();
     }
 
 }

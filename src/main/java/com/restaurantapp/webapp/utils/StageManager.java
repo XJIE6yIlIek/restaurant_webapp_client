@@ -1,6 +1,8 @@
 package com.restaurantapp.webapp.utils;
 
 import com.restaurantapp.webapp.RestaurantApplication;
+import com.restaurantapp.webapp.controllers.EventControllers.EventController;
+import com.restaurantapp.webapp.controllers.EventControllers.EventManagementController;
 import com.restaurantapp.webapp.controllers.MenuControllers.MenuController;
 import com.restaurantapp.webapp.controllers.MenuControllers.MenuManagementController;
 import com.restaurantapp.webapp.controllers.OrderControllers.OrderController;
@@ -25,11 +27,41 @@ public class StageManager {
         }
     }
 
-    public static void switchWindowToMenu(Stage stage, String fxmlFile, String sceneTitle) {
+    public static void switchWindowToDishMenu(Stage stage, String fxmlFile, String sceneTitle) {
         try {
             FXMLLoader loader = new FXMLLoader(RestaurantApplication.class.getResource(fxmlFile));
             Scene scene = new Scene(loader.load());
             MenuController controller = loader.getController();
+            controller.loadData();
+            stage.setScene(scene);
+            stage.setTitle(sceneTitle);
+            stage.show();
+        } catch (Exception e) {
+            AlertUtils.showErrorMessage("Failed to switch scene.");
+            e.printStackTrace();
+        }
+    }
+
+    public static void switchWindowToEventMenu(Stage stage, String fxmlFile, String sceneTitle) {
+        try {
+            FXMLLoader loader = new FXMLLoader(RestaurantApplication.class.getResource(fxmlFile));
+            Scene scene = new Scene(loader.load());
+            EventController controller = loader.getController();
+            controller.loadData();
+            stage.setScene(scene);
+            stage.setTitle(sceneTitle);
+            stage.show();
+        } catch (Exception e) {
+            AlertUtils.showErrorMessage("Failed to switch scene.");
+            e.printStackTrace();
+        }
+    }
+
+    public static void switchWindowToEventManagementMenu(Stage stage, String fxmlFile, String sceneTitle) {
+        try {
+            FXMLLoader loader = new FXMLLoader(RestaurantApplication.class.getResource(fxmlFile));
+            Scene scene = new Scene(loader.load());
+            EventManagementController controller = loader.getController();
             controller.loadData();
             stage.setScene(scene);
             stage.setTitle(sceneTitle);

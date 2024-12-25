@@ -22,7 +22,12 @@ public class LoginController {
     @FXML
     private PasswordField passwordField;
     @FXML
-    private Button loginButton;
+    private Button loginButton, registerButton;
+
+    @FXML
+    private void handleRegister() {
+        // TODO: make proper registration
+    }
 
     @FXML
     private void handleLogin() throws IOException, InterruptedException {

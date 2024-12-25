@@ -5,7 +5,8 @@
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.restaurantapp.webapp.controllers.MainPageControllers.ClientController">
    <children>
-      <Button fx:id="tableButton" mnemonicParsing="false" onAction="#handleTableOpen" text="Menu" />
+      <Button fx:id="dishMenuButton" mnemonicParsing="false" onAction="#handleDishMenuOpen" text="Dish menu" />
+      <Button fx:id="eventMenuButton" mnemonicParsing="false" onAction="#handleEventMenuOpen" text="Events table" />
       <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#handleLogout" text="Logout" />
    </children>
 </VBox>

@@ -14,16 +14,12 @@ public class AdminController {
 
     @FXML
     private void handleTableOpen() {
-        tableButton.setDisable(true);
         StageManager.switchWindowToUsers((Stage) tableButton.getScene().getWindow(), "user_table.fxml", "Users");
-        tableButton.setDisable(false);
     }
 
     @FXML
     private void handleLogout() {
-        logoutButton.setDisable(true);
         StageManager.switchWindow((Stage) logoutButton.getScene().getWindow(), "login.fxml", "Login");
-        logoutButton.setDisable(false);
     }
 
 }

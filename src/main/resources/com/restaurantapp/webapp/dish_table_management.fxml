@@ -12,7 +12,7 @@
       <Button fx:id="backButton" mnemonicParsing="false" onAction="#handleGoBack" text="Back" />
       <TableView fx:id="tableView" editable="true" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
         <columns>
-            <TableColumn fx:id="idColumn" prefWidth="75.0" text="id" />
+            <TableColumn fx:id="idColumn" editable="false" prefWidth="75.0" text="id" />
           <TableColumn fx:id="nameColumn" onEditCommit="#updateDishName" prefWidth="75.0" text="Dish name" />
           <TableColumn fx:id="descriptionColumn" onEditCommit="#updateDishDescription" prefWidth="75.0" text="Description" />
             <TableColumn fx:id="weightColumn" onEditCommit="#updateDishWeight" prefWidth="75.0" text="Weight" />

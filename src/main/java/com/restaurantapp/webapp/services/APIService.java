@@ -4,12 +4,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.restaurantapp.webapp.models.*;
 import com.restaurantapp.webapp.utils.HttpUtils;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class APIService {
 
@@ -37,7 +39,8 @@ public class APIService {
         String response = HttpUtils.sendGetRequest(url);
         List<Order> orders = objectMapper.readValue(response, new TypeReference<>(){});
         List<OrderView> orderViews = orders.stream().map(order -> new OrderView(order.getId(), order.getTableNumber(),
-                order.getStatus(), order.getOrderTime(), order.getItems())).toList();
+                order.getStatus(), order.getOrderTime(), order.getItems()))
+                .toList();
         return orderViews;
     }
 
@@ -61,17 +64,28 @@ public class APIService {
         return userRoles;
     }
 
+    public static List<Event> loadEvents() throws IOException, InterruptedException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
+        String url = api_url + "/events";
+        String response = HttpUtils.sendGetRequest(url);
+        List<Event> events = objectMapper.readValue(response, new TypeReference<>(){});
+        return events;
+    }
+
     public static void createDish(Dish dish) throws IOException, InterruptedException {
-        ObjectWriter objectWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
         String url = api_url + "/dishes/create";
-        String response = HttpUtils.sendPostRequest(url, objectWriter.writeValueAsString(dish));
+        String response = HttpUtils.sendPostRequest(url, objectMapper.writeValueAsString(dish));
         System.out.println(response);
     }
 
     public static void updateDish(Dish dish) throws IOException, InterruptedException {
-        ObjectWriter objectWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
         String url = api_url + "/dishes/update/" + dish.getId();
-        String response = HttpUtils.sendPostRequest(url, objectWriter.writeValueAsString(dish));
+        String response = HttpUtils.sendPostRequest(url, objectMapper.writeValueAsString(dish));
         System.out.println(response);
     }
 
@@ -82,30 +96,50 @@ public class APIService {
     }
 
     public static void updateOrderStatus(Order order) throws IOException, InterruptedException {
-        ObjectWriter objectWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
         String url = api_url + "/orders/update/" + order.getId();
-        String response = HttpUtils.sendPostRequest(url, objectWriter.writeValueAsString(order));
+        String response = HttpUtils.sendPostRequest(url, objectMapper.writeValueAsString(order));
         System.out.println(response);
     }
 
     public static void createOrder(Order order) throws IOException, InterruptedException {
-        ObjectWriter objectWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
         String url = api_url + "/orders/create";
-        String response = HttpUtils.sendPostRequest(url, objectWriter.writeValueAsString(order));
+        String response = HttpUtils.sendPostRequest(url, objectMapper.writeValueAsString(order));
         System.out.println(response);
     }
 
     public static void updateUser(User user) throws IOException, InterruptedException {
-        ObjectWriter objectWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
         String url = api_url + "/users/update/" + user.getId();
-        String response = HttpUtils.sendPostRequest(url, objectWriter.writeValueAsString(user));
+        String response = HttpUtils.sendPostRequest(url, objectMapper.writeValueAsString(user));
         System.out.println(response);
     }
 
     public static void createUser(User user) throws IOException, InterruptedException {
-        ObjectWriter objectWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
         String url = api_url + "/users/create";
-        String response = HttpUtils.sendPostRequest(url, objectWriter.writeValueAsString(user));
+        String response = HttpUtils.sendPostRequest(url, objectMapper.writeValueAsString(user));
+        System.out.println(response);
+    }
+
+    public static void createEvent(Event event) throws IOException, InterruptedException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
+        String url = api_url + "/events/create";
+        String response = HttpUtils.sendPostRequest(url, objectMapper.writeValueAsString(event));
+        System.out.println(response);
+    }
+
+    public static void updateEvent(Event event) throws IOException, InterruptedException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
+        String url = api_url + "/events/update/" + event.getId();
+        String response = HttpUtils.sendPostRequest(url, objectMapper.writeValueAsString(event));
         System.out.println(response);
     }
 
