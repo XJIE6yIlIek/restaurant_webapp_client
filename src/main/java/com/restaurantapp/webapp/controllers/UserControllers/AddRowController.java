@@ -1,20 +1,19 @@
 package com.restaurantapp.webapp.controllers.UserControllers;
 
-import com.restaurantapp.webapp.models.Dish;
 import com.restaurantapp.webapp.models.User;
 import com.restaurantapp.webapp.models.UserRole;
 import com.restaurantapp.webapp.services.APIService;
 import com.restaurantapp.webapp.utils.AlertUtils;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.stage.Stage;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.util.Callback;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import java.util.Stack;
 
 public class AddRowController {
 
@@ -24,8 +23,6 @@ public class AddRowController {
     private TextField passwordField;
     @FXML
     private ComboBox<UserRole> roleComboBox;
-    @FXML
-    private Button submitButton;
 
     @FXML
     private void submit() {

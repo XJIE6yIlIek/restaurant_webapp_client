@@ -35,7 +35,7 @@ public class EventManagementController {
     @FXML
     private TableColumn<Event, Long> idColumn, capacityColumn;
     @FXML
-    private Button backButton, addRowButton, refreshButton;
+    private Button backButton, addRowButton;
     private ObservableList<Event> data;
     private Stack<Event> deletedRows = new Stack<>();
 
@@ -72,7 +72,7 @@ public class EventManagementController {
     @FXML
     private void updateEventTime(TableColumn.CellEditEvent<Event, LocalDateTime> event) throws IOException, InterruptedException {
         Event eventObj = event.getRowValue();
-        LocalDateTime newTime = event.getNewValue(); // TODO: make something with date formatting stuff
+        LocalDateTime newTime = event.getNewValue();
         if (!Objects.isNull(newTime)) {
             eventObj.setEventTime(newTime);
             APIService.updateEvent(eventObj);
@@ -104,7 +104,6 @@ public class EventManagementController {
                 deletedRows.push(selectedEvent);
             } catch (IOException | InterruptedException e) {
                 AlertUtils.showErrorMessage("Something went wrong...");
-                e.printStackTrace();
             }
         }
     }
@@ -133,7 +132,6 @@ public class EventManagementController {
 
         nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         descriptionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-//        timeColumn.setCellFactory(TextFieldTableCell.forTableColumn(new )); // TODO: date converter
         capacityColumn.setCellFactory(TextFieldTableCell.forTableColumn(new CustomObjectConverter.CustomLongStringConverter()));
 
         data = FXCollections.observableArrayList();

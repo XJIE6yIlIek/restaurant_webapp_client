@@ -12,18 +12,19 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import lombok.AllArgsConstructor;
 
+import java.util.Objects;
+
 @AllArgsConstructor
 public class StageManager {
 
     public static void switchWindow(Stage stage, String fxmlFile, String sceneTitle) {
         try {
-            Scene scene = new Scene(FXMLLoader.load(RestaurantApplication.class.getResource(fxmlFile)));
+            Scene scene = new Scene(FXMLLoader.load(Objects.requireNonNull(RestaurantApplication.class.getResource(fxmlFile))));
             stage.setScene(scene);
             stage.setTitle(sceneTitle);
             stage.show();
         } catch (Exception e) {
             AlertUtils.showErrorMessage("Failed to switch scene.");
-            e.printStackTrace();
         }
     }
 
@@ -38,7 +39,6 @@ public class StageManager {
             stage.show();
         } catch (Exception e) {
             AlertUtils.showErrorMessage("Failed to switch scene.");
-            e.printStackTrace();
         }
     }
 
@@ -53,7 +53,6 @@ public class StageManager {
             stage.show();
         } catch (Exception e) {
             AlertUtils.showErrorMessage("Failed to switch scene.");
-            e.printStackTrace();
         }
     }
 
@@ -68,7 +67,6 @@ public class StageManager {
             stage.show();
         } catch (Exception e) {
             AlertUtils.showErrorMessage("Failed to switch scene.");
-            e.printStackTrace();
         }
     }
 
@@ -83,7 +81,6 @@ public class StageManager {
             stage.show();
         } catch (Exception e) {
             AlertUtils.showErrorMessage("Failed to switch scene.");
-            e.printStackTrace();
         }
     }
 
@@ -98,7 +95,6 @@ public class StageManager {
             stage.show();
         } catch (Exception e) {
             AlertUtils.showErrorMessage("Failed to switch scene.");
-            e.printStackTrace();
         }
     }
 
@@ -113,7 +109,6 @@ public class StageManager {
             stage.show();
         } catch (Exception e) {
             AlertUtils.showErrorMessage("Failed to switch scene.");
-            e.printStackTrace();
         }
     }
 

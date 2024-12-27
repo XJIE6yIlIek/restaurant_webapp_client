@@ -1,11 +1,9 @@
 package com.restaurantapp.webapp.controllers.EventControllers;
 
-import com.restaurantapp.webapp.models.Dish;
 import com.restaurantapp.webapp.models.Event;
 import com.restaurantapp.webapp.services.APIService;
 import com.restaurantapp.webapp.utils.AlertUtils;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -14,7 +12,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class AddRowController {
@@ -23,8 +20,6 @@ public class AddRowController {
     private TextField nameField, descriptionField, capacityField;
     @FXML
     private DatePicker datePicker;
-    @FXML
-    private Button submitButton;
     @FXML
     private ComboBox<Integer> hourComboBox, minuteComboBox;
 
@@ -36,7 +31,7 @@ public class AddRowController {
         Integer selectedHour = hourComboBox.getSelectionModel().getSelectedItem();
         Integer selectedMinute = minuteComboBox.getSelectionModel().getSelectedItem();
         try {
-            Long capacity = Long.parseLong(capacityField.getText());
+            long capacity = Long.parseLong(capacityField.getText());
             if (Objects.isNull(name) || name.trim().isEmpty()
                     || Objects.isNull(description) || description.trim().isEmpty()
                     || capacity <= 0

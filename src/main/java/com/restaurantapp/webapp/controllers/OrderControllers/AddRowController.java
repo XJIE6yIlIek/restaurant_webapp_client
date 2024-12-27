@@ -15,7 +15,6 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.Callback;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Stack;
@@ -30,13 +29,11 @@ public class AddRowController {
     private TableColumn<OrderItem, Long> idColumn, nameColumn, quantityColumn;
     @FXML
     private ComboBox<Dish> dishComboBox;
-    @FXML
-    private Button submitButton, addItemButton;
     private ObservableList<OrderItem> data = FXCollections.observableArrayList();
     private Stack<OrderItem> deletedRows = new Stack<>();
 
     public void initialize() throws IOException, InterruptedException {
-        Callback<ListView<Dish>, ListCell<Dish>> cellFactory = lv -> new ListCell<Dish>() {
+        Callback<ListView<Dish>, ListCell<Dish>> cellFactory = lv -> new ListCell<>() {
 
             @Override
             protected void updateItem(Dish item, boolean empty) {

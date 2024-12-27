@@ -5,6 +5,7 @@ module com.restaurantapp.webapp {
     requires static lombok;
     requires org.json;
     requires com.fasterxml.jackson.datatype.jsr310;
+    requires java.prefs;
 
     requires org.kordamp.bootstrapfx.core;
     requires com.fasterxml.jackson.databind;

@@ -22,12 +22,7 @@ public class LoginController {
     @FXML
     private PasswordField passwordField;
     @FXML
-    private Button loginButton, registerButton;
-
-    @FXML
-    private void handleRegister() {
-        // TODO: make proper registration
-    }
+    private Button loginButton;
 
     @FXML
     private void handleLogin() throws IOException, InterruptedException {
@@ -41,26 +36,25 @@ public class LoginController {
 
         loginButton.setDisable(true);
 
-        String response = "";
+        String response;
         try {
             response = login(username, password);
             if (!Objects.isNull(response) && response.contains("role")) {
                 JSONObject jsonObject = new JSONObject(response);
                 String userRole = jsonObject.getString("role").toLowerCase();
-                String fxmlFile = "";
+                String fxmlFile;
                 String sceneTitle = "Main";
-                System.out.println();
                 switch (userRole) {
-                    case "client":
+                    case "role_client":
                         fxmlFile = "client.fxml";
                         break;
-                    case "employee":
+                    case "role_employee":
                         fxmlFile = "employee.fxml";
                         break;
-                    case "manager":
+                    case "role_manager":
                         fxmlFile = "manager.fxml";
                         break;
-                    case "admin":
+                    case "role_admin":
                         fxmlFile = "admin.fxml";
                         break;
                     default:
@@ -73,7 +67,6 @@ public class LoginController {
             }
         } catch (ConnectException e) {
             AlertUtils.showErrorMessage("Error occurred while connecting to the server.");
-            e.printStackTrace();
         }
 
         loginButton.setDisable(false);

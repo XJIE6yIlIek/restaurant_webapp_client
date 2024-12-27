@@ -1,7 +1,6 @@
 package com.restaurantapp.webapp.controllers.OrderControllers;
 
 import com.restaurantapp.webapp.RestaurantApplication;
-import com.restaurantapp.webapp.models.Dish;
 import com.restaurantapp.webapp.models.Order;
 import com.restaurantapp.webapp.models.OrderStatus;
 import com.restaurantapp.webapp.models.OrderView;
@@ -37,7 +36,7 @@ public class OrderController {
     @FXML
     private TableColumn<OrderView, Float> itemsColumn;
     @FXML
-    private Button backButton, refreshButton, addRowButton;
+    private Button backButton, addRowButton;
     private ObservableList<OrderView> data;
 
     @FXML
@@ -49,7 +48,7 @@ public class OrderController {
         newOrderStatus.setName(event.getNewValue());
         order.setStatus(newOrderStatus);
         APIService.updateOrderStatus(order);
-    } // TODO: do something if order status doesn't exist
+    }
 
     @FXML
     private void handleAddRow() throws IOException {

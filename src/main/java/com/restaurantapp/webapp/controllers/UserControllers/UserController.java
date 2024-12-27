@@ -1,13 +1,11 @@
 package com.restaurantapp.webapp.controllers.UserControllers;
 
 import com.restaurantapp.webapp.RestaurantApplication;
-import com.restaurantapp.webapp.models.Dish;
 import com.restaurantapp.webapp.models.User;
 import com.restaurantapp.webapp.models.UserRole;
 import com.restaurantapp.webapp.models.UserView;
 import com.restaurantapp.webapp.services.APIService;
 import com.restaurantapp.webapp.utils.AlertUtils;
-import com.restaurantapp.webapp.utils.CustomObjectConverter;
 import com.restaurantapp.webapp.utils.StageManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,11 +15,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
-import javafx.util.converter.LongStringConverter;
 
 import java.io.IOException;
 import java.util.List;
@@ -37,7 +33,7 @@ public class UserController {
     @FXML
     private TableColumn<UserView, String> usernameColumn, roleColumn;
     @FXML
-    private Button backButton, refreshButton, addRowButton;
+    private Button backButton, addRowButton;
     private ObservableList<UserView> data;
     private Stack<UserView> deletedRows = new Stack<>();
 
@@ -58,11 +54,14 @@ public class UserController {
     }
 
     @FXML
-    private void updateUserUsername(TableColumn.CellEditEvent<User, String> event) throws  IOException, InterruptedException { // FIXME: checkbox doesn't have commit by default, make it happen...with magic, idk
-        User user = event.getRowValue();
+    private void updateUserUsername(TableColumn.CellEditEvent<UserView, String> event) throws  IOException, InterruptedException {
+        UserView userView = event.getRowValue();
+        User user = new User();
         String newUsername = event.getNewValue();
         if (!Objects.isNull(newUsername)) {
+            user.setId(userView.getId());
             user.setUsername(newUsername);
+            user.setRole(new UserRole(userView.getRole()));
             APIService.updateUser(user);
         } else {
             tableView.refresh();
@@ -70,13 +69,14 @@ public class UserController {
     }
 
     @FXML
-    private void updateUserRole(TableColumn.CellEditEvent<User, String> event) throws IOException, InterruptedException {
-        User user = event.getRowValue();
+    private void updateUserRole(TableColumn.CellEditEvent<UserView, String> event) throws IOException, InterruptedException {
+        UserView userView = event.getRowValue();
+        User user = new User();
         String newRole = event.getNewValue();
-        UserRole newUserRole = new UserRole();
-        newUserRole.setName(newRole);
         if (!Objects.isNull(newRole)) {
-            user.setRole(newUserRole);
+            user.setId(userView.getId());
+            user.setUsername(userView.getUsername());
+            user.setRole(new UserRole(newRole));
             APIService.updateUser(user);
         } else {
             tableView.refresh();
@@ -93,7 +93,6 @@ public class UserController {
                 deletedRows.push(selectedUser);
             } catch (IOException | InterruptedException e) {
                 AlertUtils.showErrorMessage("Something went wrong...");
-                e.printStackTrace();
             }
         }
     }

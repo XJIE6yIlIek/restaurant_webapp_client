@@ -1,5 +1,4 @@
 package com.restaurantapp.webapp.utils;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.net.URI;
@@ -10,7 +9,6 @@ import java.net.http.HttpResponse;
 public class HttpUtils {
 
     private static final HttpClient CLIENT = HttpClient.newHttpClient();
-    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     public static String sendPostRequest(String url, String payload) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
@@ -28,12 +26,12 @@ public class HttpUtils {
         return CLIENT.send(request, HttpResponse.BodyHandlers.ofString()).body();
     }
 
-    public static String sendDeleteRequest(String uri) throws IOException, InterruptedException {
+    public static void sendDeleteRequest(String uri) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(uri))
                 .DELETE()
                 .build();
-        return CLIENT.send(request, HttpResponse.BodyHandlers.ofString()).body();
+        CLIENT.send(request, HttpResponse.BodyHandlers.ofString()).body();
     }
 
 }

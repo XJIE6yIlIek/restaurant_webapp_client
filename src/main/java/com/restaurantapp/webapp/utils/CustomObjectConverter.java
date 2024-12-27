@@ -52,14 +52,4 @@ public class CustomObjectConverter {
         }
     }
 
-//    public static class CustomBooleanStringConverter extends BooleanStringConverter {
-//        private BooleanStringConverter converter = new BooleanStringConverter();
-//
-//        @Override
-//        public String toString(Boolean object) {
-//            try {
-//                return converter.toString(object);
-//            } catch ()
-//        }
-//    }
 }

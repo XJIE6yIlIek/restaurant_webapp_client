@@ -4,30 +4,23 @@ import com.restaurantapp.webapp.models.Dish;
 import com.restaurantapp.webapp.services.APIService;
 import com.restaurantapp.webapp.utils.AlertUtils;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.Objects;
-import java.util.Stack;
 
 public class AddRowController {
 
     @FXML
     private TextField nameField, descriptionField, weightField, priceField;
-    @FXML
-    private Button submitButton;
 
     @FXML
     private void submit() {
         String name = nameField.getText();
         String description = descriptionField.getText();
         try {
-            Float weight = Float.parseFloat(weightField.getText());
-            Float price = Float.parseFloat(priceField.getText());
+            float weight = Float.parseFloat(weightField.getText());
+            float price = Float.parseFloat(priceField.getText());
             if (Objects.isNull(name) || name.trim().isEmpty()
                 || Objects.isNull(description) || description.trim().isEmpty()
                 || weight <= 0
